@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace Day6_MultiUserLogin
 {
-    public partial class Form1 : Form
+    public partial class log : Form
     {
         Dictionary<string, string> accounts = new Dictionary<string, string>(); // 帳號 ➜ 密碼
         Dictionary<string, string> profiles = new Dictionary<string, string>(); // 帳號 ➜ 使用者名稱
         Dictionary<string, int> loginAttempts = new Dictionary<string, int>(); // 帳號➜ 錯誤次數
-        public Form1()
+        public log()
         {
             InitializeComponent();
         }
