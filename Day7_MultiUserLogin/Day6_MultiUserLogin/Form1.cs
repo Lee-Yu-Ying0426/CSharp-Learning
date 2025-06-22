@@ -51,9 +51,16 @@ namespace Day6_MultiUserLogin
             if (isLogin)// 登入成功，顯示功能選單
             {
                 this.Hide(); // 隱藏登入視窗
-                ShowMenu(userName.Text);
+                string username = userName.Text;
+                string name = profiles[username]; // 取得使用者名稱
+
+                FormMain mainForm = new FormMain(username, name); // ➜ 建立主畫面表單
+                mainForm.ShowDialog(); // 顯示主畫面，並暫停登入畫面
+
+                this.Show(); // 當主畫面關閉後，回到登入畫面
+                //ShowMenu(userName.Text);
                 userName.Clear(); // 清除帳號欄位
-                userPassword.Clear(); // 清除密碼欄位
+                 userPassword.Clear(); // 清除密碼欄位
             }
         }
 
@@ -80,29 +87,29 @@ namespace Day6_MultiUserLogin
             return true; // 登入成功
         }
 
-        void ShowMenu(string username)
-        {
-            string choice = Interaction.InputBox("請輸入功能編號：1=查詢、2=改密碼、3=登出", "功能選單", "");
-            while(choice != "3")
-            {
-                if (choice == "1")
-                {
-                    MessageBox.Show($"帳號：{username}\n名稱：{profiles[username]}");
-                }
-                else if (choice == "2")
-                {
-                    string newPwd = Interaction.InputBox("請輸入新密碼：", "修改密碼", "");
-                    accounts[username] = newPwd;
-                    MessageBox.Show("密碼已更新！");
-                }
-                else
-                {
-                    MessageBox.Show("請輸入有效選項！");
-                }
-                choice = Interaction.InputBox("請輸入功能編號：1=查詢、2=改密碼、3=登出", "功能選單", "");
-            }
-            MessageBox.Show("登出成功！");
-            this.Show(); // ➕ 顯示回登入視窗
-        }
+        //void ShowMenu(string username)
+        //{
+        //    string choice = Interaction.InputBox("請輸入功能編號：1=查詢、2=改密碼、3=登出", "功能選單", "");
+        //    while(choice != "3")
+        //    {
+        //        if (choice == "1")
+        //        {
+        //            MessageBox.Show($"帳號：{username}\n名稱：{profiles[username]}");
+        //        }
+        //        else if (choice == "2")
+        //        {
+        //            string newPwd = Interaction.InputBox("請輸入新密碼：", "修改密碼", "");
+        //            accounts[username] = newPwd;
+        //            MessageBox.Show("密碼已更新！");
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("請輸入有效選項！");
+        //        }
+        //        choice = Interaction.InputBox("請輸入功能編號：1=查詢、2=改密碼、3=登出", "功能選單", "");
+        //    }
+        //    MessageBox.Show("登出成功！");
+        //    this.Show(); //顯示回登入視窗
+        //}
     }
 }
